@@ -8,9 +8,10 @@ l, f = 18, 1812433253
 MT = list(range(n))
 lower_mask = 0x7FFFFFFF
 upper_mask = 0x80000000
-index = n
+index = n+1
 
-def initialise(seed):
+#
+def initialise_MT(seed):
     global index
     index = n
     MT[0] = seed
@@ -26,12 +27,13 @@ def twist():
         if x%2 != 0: xA = xA ^ a
         MT[i] = MT[(i+m)%n] ^ xA
 
-    print('state 1:',MT[0:3])
     index = 0
 
 def mersenne_twister():
     global index
-    if index == n: twist()
+    if index >= n: 
+        if index > n: initialise_MT(5489)
+        twist()
 
     y = MT[index]
     y = y ^ ((y >> u) & d)    
