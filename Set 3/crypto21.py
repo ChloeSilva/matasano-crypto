@@ -36,7 +36,7 @@ def mersenne_twister():
         twist()
 
     y = MT[index]
-    y = y ^ ((y >> u) & d)    
+    y = y ^ (y >> u)  
     y = y ^ ((y << s) & b)
     y = y ^ ((y << t) & c)
     y = y ^ (y >> l)
