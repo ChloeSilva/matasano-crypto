@@ -7,7 +7,7 @@ s, b = 7, 0x9D2C5680
 t, c = 15, 0xEFC60000
 l, f = 18, 1812433253
 
-# Untempers a given mersenne prime to discover generator state
+# Untempers a given number to discover the MT generator state
 def untemper(x):
     x = x ^ (x >> l)
     x = x ^ ((x << t) & c) 
@@ -18,6 +18,7 @@ def untemper(x):
 
     return x
 
+# Tempers a number according to MT
 def temper(y):
     y = y ^ (y >> u)  
     y = y ^ ((y << s) & b)
